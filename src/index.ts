@@ -4,12 +4,18 @@ import { GetUsersController } from './controllers/get-users/get-users';
 import { MongoGetUsersRepository } from './repositories/get-users/mongo-get-users';
 import { MongoClient } from './database/mongo';
 
-
 const main = async () => {
   config()
   const app = express();
 
-  await MongoClient.connect();
+  await MongoClient.connect()
+    .then(() =>
+      console.log('Connected to MongoDB'))
+    .catch((error) => {
+      console.error('Error trying to connect to MongoDB:', error);
+      process.exit(1);
+    });
+
   const port = process.env.PORT || 3000;
 
   app.get('/users', async (req, res) => {
@@ -22,9 +28,7 @@ const main = async () => {
     res.send(body).status(statusCode);
   });
 
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });
+  app.listen(port, () => console.log(`Server is running on http://localhost:${port}`));
 }
 
 main();
