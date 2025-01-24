@@ -8,19 +8,12 @@ const main = async () => {
   config()
   const app = express();
 
-  await MongoClient.connect()
-    .then(() =>
-      console.log('Connected to MongoDB'))
-    .catch((error) => {
-      console.error('Error trying to connect to MongoDB:', error);
-      process.exit(1);
-    });
+  await MongoClient.connect();
 
   const port = process.env.PORT || 3000;
 
   app.get('/users', async (req, res) => {
     const mongoGetUsersRepository = new MongoGetUsersRepository();
-
     const getUsersController = new GetUsersController(mongoGetUsersRepository);
 
     const { body, statusCode } = await getUsersController.handle();

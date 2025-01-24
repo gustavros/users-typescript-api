@@ -22,8 +22,8 @@ export const MongoClient = {
       this.client = client;
       this.db = db;
 
-      // Create a collection to ensure the database is created
-      await db.createCollection('exampleCollection');
+      await client.db("admin").command({ ping: 1 });
+      console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } catch (error) {
       console.error('Error trying to connect to MongoDB:', error);
       process.exit(1);
