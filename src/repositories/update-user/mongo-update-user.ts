@@ -1,7 +1,8 @@
 import { ObjectId } from "mongodb";
-import { IUpdateUserRepository, UpdateUserParams } from "../../controllers/update-user/update-user";
+
 import { MongoClient } from "../../database/mongo";
 import { User } from "../../models/user";
+import { IUpdateUserRepository, UpdateUserParams } from "../../controllers/update-user/protocols";
 
 export class MongoUpdateUserRepository implements IUpdateUserRepository {
   async updateUser(id: string, params: UpdateUserParams): Promise<User> {
@@ -21,9 +22,11 @@ export class MongoUpdateUserRepository implements IUpdateUserRepository {
         throw new Error('User not found');
       }
 
+      const { _id, ...userWithoutId } = user;
+
       return {
-        id: user._id.toHexString(),
-        ...user
+        id: _id.toHexString(),
+        ...userWithoutId
       };
     } catch {
       throw new Error('Internal server error');
