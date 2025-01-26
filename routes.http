@@ -1,0 +1,29 @@
+GET http://localhost:3000/users
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "password": "securepassword123"
+}
+
+
+###
+
+PATCH http://localhost:3000/users/6796259f81454b8ad1b7c79f
+Content-Type: application/json
+
+{
+  "firstName": "Gustavo",
+  "lastName": "Santana",
+  "password": "securepassword123"
+}
+
+###
+
+DELETE http://localhost:3000/users/67962b7745e2e1e7391eded4
