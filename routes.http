@@ -6,8 +6,8 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "firstName": "John",
-  "lastName": "Doe",
+  "firstName": "Hemelly",
+  "lastName": "Caramelo",
   "email": "john.doe@example.com",
   "password": "securepassword123"
 }
@@ -19,11 +19,15 @@ PATCH http://localhost:3000/users/6796259f81454b8ad1b7c79f
 Content-Type: application/json
 
 {
-  "firstName": "Gustavo",
-  "lastName": "Santana",
+  "firstName": "Hemelly",
+  "lastName": "Caramelo",
   "password": "securepassword123"
 }
 
 ###
 
 DELETE http://localhost:3000/users/67962b7745e2e1e7391eded4
+
+###
+
+GET https://users-typescript-api-delta.vercel.app/users
